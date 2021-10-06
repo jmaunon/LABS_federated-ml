@@ -1,0 +1,183 @@
+[+] Building 169.8s (11/11) FINISHED                                                                                                                                      
+ => [build_client_a internal] load build definition from Dockerfile.client                                                                                           0.0s
+ => => transferring dockerfile: 175B                                                                                                                                 0.0s
+ => [build_client_b internal] load build definition from Dockerfile.client                                                                                           0.0s
+ => => transferring dockerfile: 175B                                                                                                                                 0.0s
+ => [build_server internal] load build definition from Dockerfile.server                                                                                             0.0s
+ => => transferring dockerfile: 188B                                                                                                                                 0.0s
+ => [build_client_a internal] load .dockerignore                                                                                                                     0.0s
+ => => transferring context: 2B                                                                                                                                      0.0s
+ => [build_client_b internal] load .dockerignore                                                                                                                     0.0s
+ => => transferring context: 2B                                                                                                                                      0.0s
+ => [build_server internal] load .dockerignore                                                                                                                       0.0s
+ => => transferring context: 2B                                                                                                                                      0.0s
+ => [build_client_b internal] load metadata for docker.io/library/python:3.7-slim                                                                                    1.9s
+ => [build_server 1/3] FROM docker.io/library/python:3.7-slim@sha256:ba4ba2de8495c9a3ceb4edae82a9f3ceae2cbd635d12c32d17a7a54b8bff8c67                                7.6s
+ => => resolve docker.io/library/python:3.7-slim@sha256:ba4ba2de8495c9a3ceb4edae82a9f3ceae2cbd635d12c32d17a7a54b8bff8c67                                             0.0s
+ => => sha256:ba4ba2de8495c9a3ceb4edae82a9f3ceae2cbd635d12c32d17a7a54b8bff8c67 1.86kB / 1.86kB                                                                       0.0s
+ => => sha256:73dce6f8ff105e3d4ba2507bfc9b3ab86f3640b7096243b881dcb308174047d3 1.37kB / 1.37kB                                                                       0.0s
+ => => sha256:5d2217e5011d57f47cd428a89182cfe75b2df640126906b9c51a7770fa8b43b6 8.56kB / 8.56kB                                                                       0.0s
+ => => sha256:bd897bb914af2ec64f1cff5856aefa1ae99b072e38db0b7d801f9679b04aad74 31.37MB / 31.37MB                                                                     5.1s
+ => => sha256:aee78d8222132bc168ae0d97914077508c31763bb168955723883c59593868ae 1.08MB / 1.08MB                                                                       0.3s
+ => => sha256:126500c6faa597432671415ee49c07614c9c239a7247713e9de80aff6a7a21bb 10.10MB / 10.10MB                                                                     2.2s
+ => => sha256:a877e9eff4022c4e7a8953c234170836cb459a74a96e3d29b65fefa086fbed94 233B / 233B                                                                           0.7s
+ => => sha256:34e6db18e4ef931803d2831f321583deda83929d4fd82fb10001d654737ee5c4 2.64MB / 2.64MB                                                                       1.9s
+ => => extracting sha256:bd897bb914af2ec64f1cff5856aefa1ae99b072e38db0b7d801f9679b04aad74                                                                            1.4s
+ => => extracting sha256:aee78d8222132bc168ae0d97914077508c31763bb168955723883c59593868ae                                                                            0.1s
+ => => extracting sha256:126500c6faa597432671415ee49c07614c9c239a7247713e9de80aff6a7a21bb                                                                            0.5s
+ => => extracting sha256:a877e9eff4022c4e7a8953c234170836cb459a74a96e3d29b65fefa086fbed94                                                                            0.0s
+ => => extracting sha256:34e6db18e4ef931803d2831f321583deda83929d4fd82fb10001d654737ee5c4                                                                            0.2s
+ => [build_client_b 2/3] WORKDIR /flower                                                                                                                             0.0s
+ => [build_server 3/3] RUN pip install flwr torch torchvision --no-cache-dir                                                                                       150.1s
+ => [build_client_a] exporting to image                                                                                                                              9.8s
+ => => exporting layers                                                                                                                                              9.8s
+ => => writing image sha256:7524aa8983bf6fbb942870ea1ed3ce42e0019a519aa59cc879b88103eb3331dd                                                                         0.0s
+ => => writing image sha256:cbd7d6c8df16c598ed90f85e7ac4171f44cfdfdc62b5b921f376942c55dbe543                                                                         0.0s
+ => => naming to docker.io/library/build_server                                                                                                                      0.0s
+ => => naming to docker.io/library/build_client_b                                                                                                                    0.0s
+ => => naming to docker.io/library/build_client_a                                                                                                                    0.0s
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[+] Running 4/4
+ ⠿ Network build_default       Created                                                                                                                               0.1s
+ ⠿ Container build-server-1    Created                                                                                                                               0.1s
+ ⠿ Container build-client_b-1  Created                                                                                                                               0.1s
+ ⠿ Container build-client_a-1  Created                                                                                                                               0.1s
+Attaching to build-client_a-1, build-client_b-1, build-server-1
+build-server-1    | INFO flower 2021-10-04 14:50:24,289 | app.py:80 | Flower server running (insecure, 3 rounds)
+build-server-1    | INFO flower 2021-10-04 14:50:24,290 | server.py:118 | Initializing global parameters
+build-server-1    | INFO flower 2021-10-04 14:50:24,290 | server.py:304 | Requesting initial parameters from one random client
+build-client_a-1  | DEBUG flower 2021-10-04 14:50:29,289 | connection.py:36 | ChannelConnectivity.IDLE
+build-client_a-1  | INFO flower 2021-10-04 14:50:29,297 | app.py:61 | Opened (insecure) gRPC connection
+build-client_a-1  | DEBUG flower 2021-10-04 14:50:29,298 | connection.py:36 | ChannelConnectivity.CONNECTING
+build-client_a-1  | DEBUG flower 2021-10-04 14:50:29,299 | connection.py:36 | ChannelConnectivity.READY
+build-server-1    | INFO flower 2021-10-04 14:50:29,313 | server.py:307 | Received initial parameters from one random client
+build-server-1    | INFO flower 2021-10-04 14:50:29,313 | server.py:120 | Evaluating initial parameters
+build-server-1    | INFO flower 2021-10-04 14:50:29,313 | server.py:133 | FL starting
+build-client_b-1  | DEBUG flower 2021-10-04 14:50:29,314 | connection.py:36 | ChannelConnectivity.IDLE
+build-client_b-1  | DEBUG flower 2021-10-04 14:50:29,317 | connection.py:36 | ChannelConnectivity.CONNECTING
+build-client_b-1  | INFO flower 2021-10-04 14:50:29,318 | app.py:61 | Opened (insecure) gRPC connection
+build-server-1    | DEBUG flower 2021-10-04 14:50:29,319 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-client_b-1  | DEBUG flower 2021-10-04 14:50:29,319 | connection.py:36 | ChannelConnectivity.READY
+build-server-1    | DEBUG flower 2021-10-04 14:55:34,116 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-04 14:55:34,128 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-04 14:55:52,030 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-04 14:55:52,031 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-04 15:03:26,422 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-04 15:03:26,427 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-04 15:04:40,556 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-04 15:04:40,556 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-04 15:20:22,899 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-04 15:20:22,903 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-04 15:20:38,811 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | INFO flower 2021-10-04 15:20:38,812 | server.py:172 | FL finished in 1810.9035802439998
+build-server-1    | INFO flower 2021-10-04 15:20:38,812 | app.py:119 | app_fit: losses_distributed [(1, 498.6227722167969), (2, 368.2007751464844), (3, 341.111572265625)]
+build-server-1    | INFO flower 2021-10-04 15:20:38,812 | app.py:120 | app_fit: metrics_distributed {}
+build-server-1    | INFO flower 2021-10-04 15:20:38,812 | app.py:121 | app_fit: losses_centralized []
+build-server-1    | INFO flower 2021-10-04 15:20:38,812 | app.py:122 | app_fit: metrics_centralized {}
+build-client_a-1  | DEBUG flower 2021-10-04 15:20:38,829 | connection.py:68 | Insecure gRPC channel closed
+build-client_a-1  | INFO flower 2021-10-04 15:20:38,830 | app.py:72 | Disconnect and shut down
+build-client_b-1  | DEBUG flower 2021-10-04 15:20:38,830 | connection.py:68 | Insecure gRPC channel closed
+build-client_b-1  | INFO flower 2021-10-04 15:20:38,831 | app.py:72 | Disconnect and shut down
+build-client_a-1  | Files already downloaded and verified
+build-client_a-1  | Files already downloaded and verified
+build-client_a-1  | Training 1 epoch(s) w/ 1563 batches each
+build-client_a-1  | [1,   100] loss: 0.109
+build-client_a-1  | [1,   200] loss: 0.096
+build-client_a-1  | [1,   300] loss: 0.090
+build-client_a-1  | [1,   400] loss: 0.086
+build-client_a-1  | [1,   500] loss: 0.083
+build-client_a-1  | [1,   600] loss: 0.081
+build-client_a-1  | [1,   700] loss: 0.080
+build-client_a-1  | [1,   800] loss: 0.077
+build-client_a-1  | [1,   900] loss: 0.076
+build-client_a-1  | [1,  1000] loss: 0.075
+build-client_a-1  | [1,  1100] loss: 0.074
+build-client_a-1  | [1,  1200] loss: 0.074
+build-client_a-1  | [1,  1300] loss: 0.072
+build-client_a-1  | [1,  1400] loss: 0.071
+build-client_a-1  | [1,  1500] loss: 0.071
+build-client_a-1  | Training 1 epoch(s) w/ 1563 batches each
+build-client_a-1  | [1,   100] loss: 0.071
+build-client_a-1  | [1,   200] loss: 0.070
+build-client_a-1  | [1,   300] loss: 0.070
+build-client_a-1  | [1,   400] loss: 0.069
+build-client_a-1  | [1,   500] loss: 0.067
+build-client_a-1  | [1,   600] loss: 0.068
+build-client_a-1  | [1,   700] loss: 0.067
+build-client_a-1  | [1,   800] loss: 0.065
+build-client_a-1  | [1,   900] loss: 0.065
+build-client_a-1  | [1,  1000] loss: 0.064
+build-client_a-1  | [1,  1100] loss: 0.064
+build-client_a-1  | [1,  1200] loss: 0.065
+build-client_a-1  | [1,  1300] loss: 0.064
+build-client_a-1  | [1,  1400] loss: 0.063
+build-client_a-1  | [1,  1500] loss: 0.060
+build-client_a-1  | Training 1 epoch(s) w/ 1563 batches each
+build-client_a-1  | [1,   100] loss: 0.060
+build-client_a-1  | [1,   200] loss: 0.059
+build-client_a-1  | [1,   300] loss: 0.060
+build-client_a-1  | [1,   400] loss: 0.059
+build-client_a-1  | [1,   500] loss: 0.059
+build-client_a-1  | [1,   600] loss: 0.058
+build-client_a-1  | [1,   700] loss: 0.058
+build-client_a-1  | [1,   800] loss: 0.058
+build-client_a-1  | [1,   900] loss: 0.059
+build-client_a-1  | [1,  1000] loss: 0.056
+build-client_a-1  | [1,  1100] loss: 0.058
+build-client_a-1  | [1,  1200] loss: 0.057
+build-client_a-1  | [1,  1300] loss: 0.058
+build-client_a-1  | [1,  1400] loss: 0.058
+build-client_a-1  | [1,  1500] loss: 0.057
+build-client_b-1  | Files already downloaded and verified
+build-client_b-1  | Files already downloaded and verified
+build-client_b-1  | Training 1 epoch(s) w/ 1563 batches each
+build-client_b-1  | [1,   100] loss: 0.109
+build-client_b-1  | [1,   200] loss: 0.097
+build-client_b-1  | [1,   300] loss: 0.090
+build-client_b-1  | [1,   400] loss: 0.088
+build-client_b-1  | [1,   500] loss: 0.084
+build-client_b-1  | [1,   600] loss: 0.083
+build-client_b-1  | [1,   700] loss: 0.080
+build-client_b-1  | [1,   800] loss: 0.079
+build-client_b-1  | [1,   900] loss: 0.077
+build-client_b-1  | [1,  1000] loss: 0.076
+build-client_b-1  | [1,  1100] loss: 0.074
+build-client_b-1  | [1,  1200] loss: 0.073
+build-client_b-1  | [1,  1300] loss: 0.073
+build-client_b-1  | [1,  1400] loss: 0.071
+build-client_b-1  | [1,  1500] loss: 0.072
+build-client_b-1  | Training 1 epoch(s) w/ 1563 batches each
+build-client_b-1  | [1,   100] loss: 0.072
+build-client_b-1  | [1,   200] loss: 0.070
+build-client_b-1  | [1,   300] loss: 0.069
+build-client_b-1  | [1,   400] loss: 0.068
+build-client_b-1  | [1,   500] loss: 0.067
+build-client_b-1  | [1,   600] loss: 0.067
+build-client_b-1  | [1,   700] loss: 0.068
+build-client_b-1  | [1,   800] loss: 0.066
+build-client_b-1  | [1,   900] loss: 0.065
+build-client_b-1  | [1,  1000] loss: 0.065
+build-client_b-1  | [1,  1100] loss: 0.064
+build-client_b-1  | [1,  1200] loss: 0.063
+build-client_b-1  | [1,  1300] loss: 0.062
+build-client_b-1  | [1,  1400] loss: 0.062
+build-client_b-1  | [1,  1500] loss: 0.063
+build-client_b-1  | Training 1 epoch(s) w/ 1563 batches each
+build-client_b-1  | [1,   100] loss: 0.058
+build-client_b-1  | [1,   200] loss: 0.060
+build-client_b-1  | [1,   300] loss: 0.059
+build-client_b-1  | [1,   400] loss: 0.059
+build-client_b-1  | [1,   500] loss: 0.059
+build-client_b-1  | [1,   600] loss: 0.059
+build-client_b-1  | [1,   700] loss: 0.058
+build-client_b-1  | [1,   800] loss: 0.058
+build-client_b-1  | [1,   900] loss: 0.058
+build-client_b-1  | [1,  1000] loss: 0.057
+build-client_b-1  | [1,  1100] loss: 0.058
+build-client_b-1  | [1,  1200] loss: 0.057
+build-client_b-1  | [1,  1300] loss: 0.058
+build-client_b-1  | [1,  1400] loss: 0.057
+build-client_b-1  | [1,  1500] loss: 0.058
+build-server-1 exited with code 0
+build-client_b-1 exited with code 0
+build-client_a-1 exited with code 0
