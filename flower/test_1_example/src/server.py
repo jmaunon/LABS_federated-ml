@@ -9,8 +9,6 @@ from flwr.common import (
 )
 from flwr.server.client_proxy import ClientProxy
 
-parameters = List[Parameters]
-
 class AggregateCustomMetricStrategy(fl.server.strategy.FedAvg):
     def aggregate_fit(
         self,
