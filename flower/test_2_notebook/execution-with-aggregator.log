@@ -1,0 +1,132 @@
+cd /Users/lucasmenendez/Workspace/python/LABS_federated-ml/flower/test_2_notebook/build && docker-compose rm -f
+Going to remove build-client_b-1, build-client_a-1, build-server-1
+[+] Running 3/0
+ ⠿ Container build-server-1    Removed                                                                                                                                                                                                                                                                                    0.0s
+ ⠿ Container build-client_b-1  Removed                                                                                                                                                                                                                                                                                    0.0s
+ ⠿ Container build-client_a-1  Removed                                                                                                                                                                                                                                                                                    0.1s
+docker-compose -f /Users/lucasmenendez/Workspace/python/LABS_federated-ml/flower/test_2_notebook/build/docker-compose.yml up --build --force-recreate --no-deps
+[+] Building 1.4s (11/11) FINISHED                                                                                                                                                                                                                                                                                             
+ => [build_server internal] load build definition from Dockerfile                                                                                                                                                                                                                                                         0.0s
+ => => transferring dockerfile: 117B                                                                                                                                                                                                                                                                                      0.0s
+ => [build_client_a internal] load build definition from Dockerfile                                                                                                                                                                                                                                                       0.0s
+ => => transferring dockerfile: 117B                                                                                                                                                                                                                                                                                      0.0s
+ => [build_client_b internal] load build definition from Dockerfile                                                                                                                                                                                                                                                       0.0s
+ => => transferring dockerfile: 117B                                                                                                                                                                                                                                                                                      0.0s
+ => [build_server internal] load .dockerignore                                                                                                                                                                                                                                                                            0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                                                                                           0.0s
+ => [build_client_a internal] load .dockerignore                                                                                                                                                                                                                                                                          0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                                                                                           0.0s
+ => [build_client_b internal] load .dockerignore                                                                                                                                                                                                                                                                          0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                                                                                           0.0s
+ => [build_server internal] load metadata for docker.io/library/python:3.7-slim                                                                                                                                                                                                                                           1.2s
+ => [build_server 1/3] FROM docker.io/library/python:3.7-slim@sha256:ae1adc6c171265ef041cac9f766568ec727fb6bdb73cbe8c536fecf022042416                                                                                                                                                                                     0.0s
+ => CACHED [build_client_b 2/3] WORKDIR /flower                                                                                                                                                                                                                                                                           0.0s
+ => CACHED [build_client_b 3/3] RUN pip install flwr torch torchvision --no-cache-dir                                                                                                                                                                                                                                     0.0s
+ => [build_client_a] exporting to image                                                                                                                                                                                                                                                                                   0.0s
+ => => exporting layers                                                                                                                                                                                                                                                                                                   0.0s
+ => => writing image sha256:02f51862e5762c2f23aba1d603ae737bc185bd62a78e1a7941a533dac38447c0                                                                                                                                                                                                                              0.0s
+ => => naming to docker.io/library/build_server                                                                                                                                                                                                                                                                           0.0s
+ => => naming to docker.io/library/build_client_b                                                                                                                                                                                                                                                                         0.0s
+ => => naming to docker.io/library/build_client_a                                                                                                                                                                                                                                                                         0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+[+] Running 3/3
+ ⠿ Container build-server-1    Created                                                                                                                                                                                                                                                                                    0.1s
+ ⠿ Container build-client_a-1  Created                                                                                                                                                                                                                                                                                    0.1s
+ ⠿ Container build-client_b-1  Created                                                                                                                                                                                                                                                                                    0.1s
+Attaching to build-client_a-1, build-client_b-1, build-server-1
+build-server-1    | INFO flower 2021-10-11 09:45:47,108 | app.py:80 | Flower server running (insecure, 10 rounds)
+build-server-1    | INFO flower 2021-10-11 09:45:47,109 | server.py:118 | Initializing global parameters
+build-server-1    | INFO flower 2021-10-11 09:45:47,109 | server.py:304 | Requesting initial parameters from one random client
+build-client_a-1  | DEBUG flower 2021-10-11 09:45:47,289 | connection.py:36 | ChannelConnectivity.IDLE
+build-client_a-1  | INFO flower 2021-10-11 09:45:47,290 | app.py:61 | Opened (insecure) gRPC connection
+build-client_a-1  | DEBUG flower 2021-10-11 09:45:47,290 | connection.py:36 | ChannelConnectivity.READY
+build-server-1    | INFO flower 2021-10-11 09:45:47,291 | server.py:307 | Received initial parameters from one random client
+build-server-1    | INFO flower 2021-10-11 09:45:47,291 | server.py:120 | Evaluating initial parameters
+build-server-1    | INFO flower 2021-10-11 09:45:47,291 | server.py:133 | FL starting
+build-client_b-1  | DEBUG flower 2021-10-11 09:45:47,306 | connection.py:36 | ChannelConnectivity.IDLE
+build-client_b-1  | DEBUG flower 2021-10-11 09:45:47,307 | connection.py:36 | ChannelConnectivity.CONNECTING
+build-client_b-1  | INFO flower 2021-10-11 09:45:47,308 | app.py:61 | Opened (insecure) gRPC connection
+build-client_b-1  | DEBUG flower 2021-10-11 09:45:47,308 | connection.py:36 | ChannelConnectivity.READY
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,308 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,313 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,316 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,318 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,318 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,320 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,321 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,323 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,323 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,326 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,327 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,330 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,330 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,332 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,333 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,334 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,335 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,336 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,337 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,339 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,339 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,342 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,343 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,346 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,346 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,348 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,349 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,351 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,351 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,353 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,353 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,355 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,355 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,358 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,359 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,362 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,362 | server.py:255 | fit_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,364 | server.py:264 | fit_round received 2 results and 0 failures
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,364 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 2)
+build-server-1    | DEBUG flower 2021-10-11 09:45:47,366 | server.py:214 | evaluate_round received 2 results and 0 failures
+build-server-1    | INFO flower 2021-10-11 09:45:47,366 | server.py:172 | FL finished in 0.07501316599882557
+build-server-1    | INFO flower 2021-10-11 09:45:47,366 | app.py:119 | app_fit: losses_distributed [(1, 634.6325073242188), (2, 634.6325073242188), (3, 634.6325073242188), (4, 634.6325073242188), (5, 634.6325073242188), (6, 634.6325073242188), (7, 634.6325073242188), (8, 634.6325073242188), (9, 634.6325073242188), (10, 634.6325073242188)]
+build-server-1    | INFO flower 2021-10-11 09:45:47,366 | app.py:120 | app_fit: metrics_distributed {}
+build-server-1    | INFO flower 2021-10-11 09:45:47,366 | app.py:121 | app_fit: losses_centralized []
+build-server-1    | INFO flower 2021-10-11 09:45:47,366 | app.py:122 | app_fit: metrics_centralized {}
+build-server-1    | Test: Round 1 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 2 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 3 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 4 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 5 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 6 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 7 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 8 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 9 loss aggregated from client results: 634.6325073242188
+build-server-1    | Test: Round 10 loss aggregated from client results: 634.6325073242188
+build-client_b-1  | DEBUG flower 2021-10-11 09:45:47,368 | connection.py:68 | Insecure gRPC channel closed
+build-client_a-1  | DEBUG flower 2021-10-11 09:45:47,368 | connection.py:68 | Insecure gRPC channel closed
+build-client_a-1  | INFO flower 2021-10-11 09:45:47,368 | app.py:72 | Disconnect and shut down
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | INFO flower 2021-10-11 09:45:47,369 | app.py:72 | Disconnect and shut down
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_b-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-client_a-1  | Epoch 0 loss 445.01763916015625
+build-server-1 exited with code 0
+build-client_a-1 exited with code 0
+build-client_b-1 exited with code 0

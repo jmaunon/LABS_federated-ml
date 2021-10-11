@@ -1,4 +1,4 @@
-# Flower.dev 1st test: Official PyTorch Example
+# Flower.dev 2nd test: Simple linear regression
 
 ## Description of experiment
 
@@ -6,7 +6,7 @@ The insights extracted from the experiment will be stored in the following [docu
 
 - Train a model with the data distributed between two silos.
 - Deploy the experiment with Docker.
-- Take an [official example](https://flower.dev/docs/example-pytorch-from-centralized-to-federated.html) to test the published features.
+- Take an [custom model](https://github.com/bbvanexttechnologies/LABS_federated-ml/tree/main/pysyft/duet_fl) to test the published features.
 
 ## Requirements to run the experiment
 
@@ -16,6 +16,6 @@ The insights extracted from the experiment will be stored in the following [docu
 
 ## Run the experient
 
-1. Run a terminal and go to the current folder `flower/test_1_example`.
+1. Run a terminal and go to the current folder `flower/test_2_example`.
 2. Run `make` command and wait for debug prints.
-3. The expected output has been persisted in [`execution-with-aggregatos.log`](execution-with-aggregator.log) file.
+3. The expected output has been persisted in [`execution-with-aggregatos.log`](./execution-with-aggregatos.log) file.
