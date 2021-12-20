@@ -8,4 +8,4 @@ install:
 
 clear:
 	-docker-compose -f $(PWD)/build/docker-compose.yml down -v --remove-orphans --rmi all 
-	-cd $(PWD)/build && && rm -f .env
+	-cd $(PWD)/build && rm -f .env
