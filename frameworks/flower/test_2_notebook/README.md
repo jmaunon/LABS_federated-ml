@@ -16,6 +16,6 @@ The insights extracted from the experiment will be stored in the following [docu
 
 ## Run the experient
 
-1. Run a terminal and go to the current folder `flower/test_2_example`.
+1. Run a terminal and go to the current folder `frameworks/flower/test_2_example`.
 2. Run `make` command and wait for debug prints.
 3. The expected output has been persisted in [`execution-with-aggregatos.log`](./execution-with-aggregatos.log) file.
