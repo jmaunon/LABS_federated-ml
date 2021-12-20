@@ -12,6 +12,11 @@ np.random.seed(4567)
 import model
 from logger import Logger
 
+# Init logger
+job_id: str = os.getenv('JOB_ID')
+node_id: str = os.getenv('NODE_ID')
+logger: Logger = Logger(job_id, node_id)
+
 USE_FEDBN: bool = True
 DEVICE: str = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -66,7 +71,9 @@ class Client(fl.client.NumPyClient):
         self.set_parameters(parameters)
 
         # Set number of iteration to 1 becouse we can pass whole dataset to the model 
-        model.train(1, self.model, self.optim, self.data_train, self.target_train)
+        result_generator: Generator[int, float] = model.train(1, self.model, self.optim, self.data_train, self.target_train)
+        for epoch, loss in result_generator:
+            logger.log("loss", loss, {"epoch": epoch})
 
         return self.get_parameters(), 1, {}
 
@@ -75,8 +82,10 @@ class Client(fl.client.NumPyClient):
     ) -> Tuple[float, int, Dict[str, Scalar]]:
         # Set model parameters, evaluate model on local test dataset, return result
         self.set_parameters(parameters)
-        loss = model.test(self.model, self.data_test, self.target_test)
-        return float(loss), len(self.data_test), {}
+        loss_tensor = model.test(self.model, self.data_test, self.target_test)
+        loss = float(loss_tensor)
+
+        return loss, len(self.data_test), {}
 
 def generate_data(): 
     """1.1. Generate synthetic dataset"""
@@ -112,12 +121,6 @@ def load_test_data(x_val, y_val) -> Tuple[torch.Tensor, torch.Tensor]:
     return torch.from_numpy(x_val.reshape(-1,1).astype('float32')), torch.from_numpy(y_val.reshape(-1,1).astype('float32'))
 
 def main():
-    # Init logger
-    job_id = os.getenv('JOB_ID')
-    node_id = os.getenv('NODE_ID')
-    logger = Logger(job_id, node_id)
-    logger.log('test_metric', 'test_value')
-
     # Load data
     x, y, x_val, y_val = generate_data()
     x_train, y_train = load_train_data(x, y)

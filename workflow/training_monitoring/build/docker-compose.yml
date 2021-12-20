@@ -1,5 +1,8 @@
 version: '3'
 
+volumes:
+    prometheus_data:
+
 services:
     server:
         build:
@@ -15,6 +18,9 @@ services:
             - ../src:/flower
         links:
             - "logger:logger"
+        depends_on:
+            - "logger"
+            - "prometheus"
     
     client_a:
         build:
@@ -31,6 +37,9 @@ services:
         links:
             - "server:server"
             - "logger:logger"
+        depends_on:
+            - "logger"
+            - "prometheus"
 
     client_b:
         build:
@@ -47,8 +56,21 @@ services:
         links:
             - "server:server"
             - "logger:logger"
+        depends_on:
+            - "logger"
+            - "prometheus"
 
     logger:
         image: prom/pushgateway
         ports: 
             - 9091:9091
+
+    prometheus:
+        image: prom/prometheus
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+            - prometheus_data:/prometheus
+        ports:
+            - 9090:9090
+        links:
+            - "logger:logger"

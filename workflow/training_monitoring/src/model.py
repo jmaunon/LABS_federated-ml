@@ -1,3 +1,4 @@
+from typing import Generator, Tuple
 import torch
 import torch as Tensor
 import torch.nn as nn
@@ -20,16 +21,16 @@ def train(
     optim: torch.optim.Adam,
     data: Tensor, 
     target: Tensor
-) -> None:
+) -> Generator[int, float, None]:
     for i in range(iterations):
         optim.zero_grad()
         output = model(data)
         loss = nn.functional.mse_loss(output, target)
         loss_item = loss.item()
 
-        print("Epoch", i, "loss", loss_item)
         loss.backward()
         optim.step()
+        yield i, float(loss_item)
 
 def test(
     model: linearRegression,
@@ -37,9 +38,6 @@ def test(
     target: Tensor
 ) -> float:
     """Validate the network on the entire test set."""
-    # Define loss and metrics
-    loss = 0.0
-
     # Evaluate the network
     model.eval()
     output = model(data)
