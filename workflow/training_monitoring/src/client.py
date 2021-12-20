@@ -1,3 +1,4 @@
+import os
 from collections import OrderedDict
 from typing import Tuple, List, Dict
 
@@ -9,6 +10,7 @@ from flwr.common import Scalar
 np.random.seed(4567)
 
 import model
+from logger import Logger
 
 USE_FEDBN: bool = True
 DEVICE: str = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -110,6 +112,12 @@ def load_test_data(x_val, y_val) -> Tuple[torch.Tensor, torch.Tensor]:
     return torch.from_numpy(x_val.reshape(-1,1).astype('float32')), torch.from_numpy(y_val.reshape(-1,1).astype('float32'))
 
 def main():
+    # Init logger
+    job_id = os.getenv('JOB_ID')
+    node_id = os.getenv('NODE_ID')
+    logger = Logger(job_id, node_id)
+    logger.log('test_metric', 'test_value')
+
     # Load data
     x, y, x_val, y_val = generate_data()
     x_train, y_train = load_train_data(x, y)

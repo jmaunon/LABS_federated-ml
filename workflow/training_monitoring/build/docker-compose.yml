@@ -7,11 +7,14 @@ services:
             dockerfile: Dockerfile
         entrypoint: [ python, /flower/server.py ]
         environment:
-            - node=0
+            - JOB_ID=${JOB_ID}
+            - NODE_ID=0
         ports: 
             - "8080:8080"
         volumes:
             - ../src:/flower
+        links:
+            - "logger:logger"
     
     client_a:
         build:
@@ -19,13 +22,15 @@ services:
             dockerfile: Dockerfile
         entrypoint: [ python, /flower/client.py ]
         environment:
-            - node=1
+            - JOB_ID=${JOB_ID}
+            - NODE_ID=1
         ports: 
             - "8081:8080"
         volumes:
             - ../src:/flower
         links:
             - "server:server"
+            - "logger:logger"
 
     client_b:
         build:
@@ -33,16 +38,17 @@ services:
             dockerfile: Dockerfile
         entrypoint: [ python, /flower/client.py ]
         environment:
-            - node=2
+            - JOB_ID=${JOB_ID}
+            - NODE_ID=2
         ports: 
             - "8082:8080"
         volumes:
             - ../src:/flower
         links:
             - "server:server"
+            - "logger:logger"
 
-
-    pushgateway:
-        build: prom/pushgateway
+    logger:
+        image: prom/pushgateway
         ports: 
             - 9091:9091

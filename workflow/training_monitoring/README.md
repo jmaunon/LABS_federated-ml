@@ -1,4 +1,4 @@
-# Flower.dev 3nd test: Training monitoring with Prometheus
+# Flower.dev 3rd test: Training monitoring with Prometheus
 
 ## Description of experiment
 
