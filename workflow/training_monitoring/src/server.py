@@ -1,3 +1,4 @@
+import os
 from typing import List, Optional, Tuple, Dict
 
 import flwr as fl
@@ -8,6 +9,13 @@ from flwr.common import (
     Scalar
 )
 from flwr.server.client_proxy import ClientProxy
+
+from logger import Logger
+
+# Init logger
+job_id: str = os.getenv('JOB_ID')
+node_id: str = os.getenv('NODE_ID')
+logger: Logger = Logger(job_id, node_id)
 
 class AggregateCustomMetricStrategy(fl.server.strategy.FedAvg):
     def aggregate_fit(
@@ -37,6 +45,9 @@ class AggregateCustomMetricStrategy(fl.server.strategy.FedAvg):
         # Call aggregate_evaluate from base class (FedAvg)
         loss_aggregated = super().aggregate_evaluate(rnd, results, failures)
         print(f"Test: Round {rnd} loss aggregated from client results: {loss_aggregated[0]}")
+
+        loss = float(loss_aggregated[0])
+        logger.log("aggregated_loss_test", loss, {"rounds": rnd})
 
         return loss_aggregated
 

@@ -73,7 +73,7 @@ class Client(fl.client.NumPyClient):
         # Set number of iteration to 1 becouse we can pass whole dataset to the model 
         result_generator: Generator[int, float] = model.train(1, self.model, self.optim, self.data_train, self.target_train)
         for epoch, loss in result_generator:
-            logger.log("loss", loss, {"epoch": epoch})
+            logger.log("train_loss", loss, {"epoch": epoch})
 
         return self.get_parameters(), 1, {}
 
@@ -84,6 +84,7 @@ class Client(fl.client.NumPyClient):
         self.set_parameters(parameters)
         loss_tensor = model.test(self.model, self.data_test, self.target_test)
         loss = float(loss_tensor)
+        logger.log("test_loss", loss)
 
         return loss, len(self.data_test), {}
 
