@@ -1,6 +1,8 @@
-from typing import Dict, List
-import requests
+import time
 from numbers import Number
+from typing import Dict, List
+
+import requests
 
 class Logger:
     def __init__(self, job_id, node_id):
@@ -26,3 +28,17 @@ class Logger:
             with err.response as res:
                 print("[Logger status %d]: %s (%s -> %d %s %s)" % (res.status_code, 
                     res.textmetric, value, labels, self.uri))
+    
+    def logExecutionTime(self, method):
+        def inner(*args, **kwargs):
+            start_time = time.time()
+            res = method(*args, **kwargs)
+            end_time = time.time()
+            
+            execution_time = (end_time - start_time)
+            print(execution_time)
+            self.log("method_duration_seconds", execution_time, { "method_name": method.__name__ })
+            
+            return res
+
+        return inner

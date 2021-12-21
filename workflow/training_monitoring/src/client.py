@@ -64,6 +64,7 @@ class Client(fl.client.NumPyClient):
             state_dict = OrderedDict({k: torch.Tensor(v) for k, v in params_dict})
             self.model.load_state_dict(state_dict, strict=True)
 
+    @logger.logExecutionTime
     def fit(
         self, parameters: List[np.ndarray], config: Dict[str, str]
     ) -> Tuple[List[np.ndarray], int]:
@@ -78,6 +79,7 @@ class Client(fl.client.NumPyClient):
 
         return self.get_parameters(), 1, {}
 
+    @logger.logExecutionTime
     def evaluate(
         self, parameters: List[np.ndarray], config: Dict[str, str]
     ) -> Tuple[float, int, Dict[str, Scalar]]:

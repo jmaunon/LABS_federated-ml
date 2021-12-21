@@ -19,6 +19,7 @@ node_id: str = os.getenv('NODE_ID')
 logger: Logger = Logger(job_id, node_id)
 
 class AggregateCustomMetricStrategy(fl.server.strategy.FedAvg):
+    @logger.logExecutionTime
     def aggregate_fit(
         self,
         rnd: int,
@@ -33,6 +34,7 @@ class AggregateCustomMetricStrategy(fl.server.strategy.FedAvg):
 
         return aggregated_parameters
     
+    @logger.logExecutionTime
     def aggregate_evaluate(
         self,
         rnd: int,
