@@ -27,7 +27,7 @@ class Logger:
             print(err)
             with err.response as res:
                 print("[Logger status %d]: %s (%s -> %d %s %s)" % (res.status_code, 
-                    res.textmetric, value, labels, self.uri))
+                    res.text, metric, value, labels, self.uri))
     
     def logExecutionTime(self, method):
         def inner(*args, **kwargs):
